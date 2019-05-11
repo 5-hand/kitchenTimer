@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="timer.css">
+    <title>キッチンタイマー</title>
+</head>
+
+<body>
+    <div class="timer">
+        <div class="timer__textBox">
+            <p class="timer__textMin js-textMin">00</p>
+            <span class="timer__textUnit">M</span>
+            <p class="timer__textSec js-textSec">00</p>
+            <span class="timer__textUnit">S</span>
+        </div>
+        <div class="timer__switchBox">
+            <div class="timer__switch js-min">分</div>
+            <div class="timer__switch js-sec">秒</div>
+            <div class="timer__switchINP">
+                <div class="timer__switch js-toggle">スタート<span class="timer__switch--layout">ストップ</span></div>
+                <div class="timer__switch timer__switchReset js-reset">リセット</div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="timer.js"></script>  
+</body>
+</html>
