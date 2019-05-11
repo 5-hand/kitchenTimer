@@ -20,7 +20,11 @@ function valueMinus(value){
 //timeを足した後にplaceに反映させる関数
 function timePlus(time,place){
     time = valuePlus(time);
+    if(time < 10){
+    place.textContent = "0" + time;
+    }else{
     place.textContent = time;
+    }
 }
 
 //timeを引いた後にplaceに反映させる関数
@@ -31,12 +35,11 @@ function timeMinus(time,place){
 
 //分のボタンを押した時に数をカウントする記述
 minElem.addEventListener('click',function(){
-    if(min < 99){
-        if(min < 9){
-        min = valuePlus(min);
+    min = valuePlus(min);
+    if(min < 100){
+        if(min < 10){
         textMin.textContent = "0" + min;
         }else{
-        min = valuePlus(min);
         textMin.textContent = min;
         }
     }else{
@@ -47,12 +50,11 @@ minElem.addEventListener('click',function(){
 
 //秒のボタンを押した時に数をカウントする記述
 secElem.addEventListener('click',function(){
-    if(sec < 59){
-        if(sec < 9){
-        sec = valuePlus(sec);
+    sec = valuePlus(sec);
+    if(sec < 60){
+        if(sec < 10){
         textSec.textContent = "0" + sec;
         }else{
-        sec = valuePlus(sec);
         textSec.textContent = sec;
         }
     }else{
