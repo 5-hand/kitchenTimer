@@ -6,6 +6,7 @@ const toggle = document.querySelector('.js-toggle');
 const reset = document.querySelector('.js-reset');
 let min = 0;
 let sec = 0;
+let timer;
 
 //引数に1足して返す関数
 function valuePlus(value){
@@ -28,9 +29,16 @@ function timePlus(time,place){
 }
 
 //timeを引いた後にplaceに反映させる関数
-function timeMinus(time,place){
-    time = valueMinus(time);
-    place.textContent = time;
+function timeMinus(time,place){   
+    timer = setInterval(function(){
+        if(time)
+            time = valueMinus(time);
+            if(time < 10){
+            place.textContent = "0" + time;
+            }else{
+            place.textContent = time;
+            }
+    },1000);
 }
 
 //分のボタンを押した時に数をカウントする記述
@@ -65,6 +73,7 @@ secElem.addEventListener('click',function(){
 
 //リセットボタンを押した時の記述
 reset.addEventListener('click',function(){
+    clearInterval(timer);
     min = 0;
     sec = 0;
     textMin.textContent = "00";
@@ -74,6 +83,6 @@ reset.addEventListener('click',function(){
 //スタートボタンの挙動
 toggle.addEventListener('click',function(){
     if(!(min == 0) || !(sec == 0)){
-        setInterval(timeMinus(sec,textSec),1000);
+        timeMinus(sec,textSec);
     }
 });
