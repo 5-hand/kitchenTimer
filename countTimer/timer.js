@@ -69,9 +69,16 @@ toggle.addEventListener('click',() =>{
     const remainMSec = totalTime - diff;
     const remainSec = Math.ceil((remainMSec /1000) % 60);
     // msを分に変換
-    const remainMin = Math.trunc(remainMSec/60000);
-    pushZero(remainSec,textSec);
-    pushZero(remainMin,textMin);
+    const remainMin = Math.trunc(remainMSec / 60000);
+    //６０秒を１分００秒で表示する記述
+    if(remainSec % 60 === 0){
+        textSec.textContent = '00'
+        textMin.textContent = '0' + (remainMin + 1);
+    }else{
+        pushZero(remainSec,textSec);
+        pushZero(remainMin,textMin);
+    }
+    
     if(remainMin == 0 && remainSec == 0){
         clearInterval(timerId);
     }
