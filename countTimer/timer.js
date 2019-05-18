@@ -53,7 +53,7 @@ minElem.addEventListener('click',() =>{
         pushZero(min,textMin);
     }else{
     min =0;
-    textMin.textContent = "0" + min;
+    pushZero(min,textMin);
     }
 });
 
@@ -64,9 +64,8 @@ secElem.addEventListener('click',() => {
         pushZero(sec,textSec);
     }else{
     sec =0;
-    textSec.textContent = "0" + sec;
+    pushZero(sec,textSec);
     }
-    console.log(sec);
 });
 
 // スタートボタンを押した時の記述
@@ -89,7 +88,8 @@ toggle.addEventListener('click',() =>{
         textSec.textContent = '00';
         clearInterval(timerId);
     }else if(remainSec % 60 === 0){
-        textMin.textContent = '0' + (remainMin + 1);
+        pushZero((remainMin + 1),textMin);
+        textSec.textContent = '00';
     }else{
         pushZero(remainSec,textSec);
         pushZero(remainMin,textMin);
@@ -102,7 +102,7 @@ toggle.addEventListener('click',() =>{
 reset.addEventListener('click',() =>{
     min = 0;
     sec = 0;
-    textMin.textContent = "00";
-    textSec.textContent = "00";
+    pushZero(min,textMin);
+    pushZero(sec,textSec);
     clearInterval(timerId);
 });
