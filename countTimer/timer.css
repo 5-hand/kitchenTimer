@@ -56,6 +56,10 @@ html{
     color:#006400;
 }
 
+.timer__switch:focus{
+    outline:0;
+}
+
 .timer__switch--value{
     padding:20px 30px;
 }
