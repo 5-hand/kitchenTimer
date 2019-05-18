@@ -9,7 +9,7 @@ let min = 0;
 let sec = 0;
 let oldTime;
 let totalTime;
-let cnt = 0;
+let startCnt = 0;
 
 //引数に1足して返す関数
 function valuePlus(value){
@@ -37,13 +37,15 @@ function pushZero(num ,place){
     }
 }
 
-function ableToggle(elem){
+function disableToggle(){
+    if(startCnt == 1){
+        minElem.disabled = true;
+        secElem.disabled = true;
+    }else{
+        minElem.disabled = false;
+        secElem.disabled = false;
+    }
    
-    elem.disabled = "true";
-    if(elem.disabled = true){
-    elem.disabled = 'false'
-}
-    console.log(elem.getAttribute('disabled'));
 }
 
 //分のボタンを押した時に数をカウントする記述
@@ -55,6 +57,7 @@ minElem.addEventListener('click',() =>{
     min =0;
     pushZero(min,textMin);
     }
+    console.log(min);
 });
 
 //秒のボタンを押した時に数をカウントする記述
@@ -70,9 +73,9 @@ secElem.addEventListener('click',() => {
 
 // スタートボタンを押した時の記述
 toggle.addEventListener('click',() =>{
-    cnt++;
-    if(cnt == 1){
-    ableToggle(minElem);
+    startCnt++;
+    disableToggle();
+    if(startCnt == 1){
     oldTime = Date.now();
     totalTime = getMS(min,sec);
 //1秒ごとに現在の時間と目的の時間を計算して表示
