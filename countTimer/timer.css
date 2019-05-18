@@ -38,7 +38,7 @@ html{
 }
 
 .timer__switchBox{
-    width:90%;
+    width:95%;
     margin:50px auto;
     display:flex;
     justify-content: space-between;
@@ -46,6 +46,7 @@ html{
 }
 
 .timer__switch{
+    display:block;
     font-size:4rem;
     padding:20px;
     border:1px solid black;
@@ -53,6 +54,10 @@ html{
     border-radius:50%;
     background-color:#fff;
     color:#006400;
+}
+
+.timer__switch--value{
+    padding:20px 30px;
 }
 
 .timer__switchINP > .timer__switch{

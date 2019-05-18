@@ -9,6 +9,7 @@ let min = 0;
 let sec = 0;
 let oldTime;
 let totalTime;
+let cnt = 0;
 
 //引数に1足して返す関数
 function valuePlus(value){
@@ -27,12 +28,22 @@ function getMS(minute,second){
     return msMin + msSec;
 }
 
+//数字が０以下なら数字の前に０を足して返す関数
 function pushZero(num ,place){
     if(num < 10){
         place.textContent = '0' + num;
     }else{
         place.textContent = num;
     }
+}
+
+function ableToggle(elem){
+   
+    elem.disabled = "true";
+    if(elem.disabled = true){
+    elem.disabled = 'false'
+}
+    console.log(elem.getAttribute('disabled'));
 }
 
 //分のボタンを押した時に数をカウントする記述
@@ -60,6 +71,9 @@ secElem.addEventListener('click',() => {
 
 // スタートボタンを押した時の記述
 toggle.addEventListener('click',() =>{
+    cnt++;
+    if(cnt == 1){
+    ableToggle(minElem);
     oldTime = Date.now();
     totalTime = getMS(min,sec);
 //1秒ごとに現在の時間と目的の時間を計算して表示
@@ -71,18 +85,17 @@ toggle.addEventListener('click',() =>{
     // msを分に変換
     const remainMin = Math.trunc(remainMSec / 60000);
     //６０秒を１分００秒で表示する記述
-    if(remainSec % 60 === 0){
-        textSec.textContent = '00'
+    if(remainMin == 0 && remainSec == 0){
+        textSec.textContent = '00';
+        clearInterval(timerId);
+    }else if(remainSec % 60 === 0){
         textMin.textContent = '0' + (remainMin + 1);
     }else{
         pushZero(remainSec,textSec);
         pushZero(remainMin,textMin);
     }
-    
-    if(remainMin == 0 && remainSec == 0){
-        clearInterval(timerId);
-    }
 },1000);
+}
 });
 
 //リセットボタンを押した時の記述
