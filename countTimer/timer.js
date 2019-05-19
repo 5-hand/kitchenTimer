@@ -4,6 +4,7 @@ const minElem = document.querySelector('.js-min');
 const secElem = document.querySelector('.js-sec');
 const toggle = document.querySelector('.js-toggle');
 const reset = document.querySelector('.js-reset');
+const mode = document.querySelector('.mode');
 let cnt = 0;
 let countDown;
 let countUp;
@@ -66,11 +67,20 @@ function resetContent(){
     min = 0;
     sec = 0;
     disableToggle();
+    modeShow(cnt + 1);
     pushZero(min,textMin);
     pushZero(sec,textSec);
     clearInterval(countDown);
     clearInterval(countUp);
     console.log('jfioa@wje');
+}
+
+function modeShow(cnt){
+    if(cnt == 0){
+        mode.textContent = 'DOWN'
+    }else{
+        mode.textContent = 'UP'
+    }
 }
 
 //分のボタンを押した時に数をカウントする記述
@@ -101,6 +111,7 @@ toggle.addEventListener('click',() =>{
     disableToggle();
     if(cnt ==1 || (min == 0 && sec == 0)){
     cnt=1;
+    modeShow(cnt);
     // カウントアップタイマーの仕組み
     if(cnt == 1 && startCnt ==1){
     now = Date.now();
@@ -152,6 +163,7 @@ toggle.addEventListener('click',() =>{
         //カウントダウンタイマーの仕組み
         if(cnt == 0 || startCnt == 1){
             cnt = 0;
+            modeShow(cnt);
             oldTime = Date.now();
             totalTime = getMS(min,sec);
             //1秒ごとに現在の時間と目的の時間を計算して表示
