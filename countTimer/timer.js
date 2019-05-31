@@ -75,6 +75,7 @@ function resetContent(){
     console.log('jfioa@wje');
 }
 
+//画面上部にモードを表示する記述
 function modeShow(cnt){
     if(cnt == 0){
         mode.textContent = 'DOWN'
@@ -118,7 +119,6 @@ toggle.addEventListener('click',() =>{
     countUp =setInterval(()=>{
         progress = Date.now();
         nowdiff = progress - now;
-        console.log(nowdiff);
         nowSec = Math.trunc((nowdiff /1000) % 60);
         nowMin = Math.trunc(nowdiff / 60000);
         if(nowMin == 99 && nowSec > 59){
@@ -128,22 +128,17 @@ toggle.addEventListener('click',() =>{
         }else{
         pushZero(nowMin,textMin);
         pushZero(nowSec,textSec);
-        console.log(nowMin);
-        console.log(nowSec);
         }
     },1000);
     }else if(cnt == 1 && startCnt == 2){
         clearInterval(countUp);
         startCnt++;
-        console.log('gjaope@e');
      }else{
-        console.log('gjaopefkop[agj@e');
         now = Date.now();
         let continueTime = nowdiff;
         countUp = setInterval(()=>{
             progress = Date.now()+ continueTime;
             nowdiff = progress - now;
-            console.log(nowdiff);
             nowSec = Math.trunc((nowdiff /1000) % 60);
             nowMin = Math.trunc(nowdiff / 60000);
             if(nowMin == 99 && nowSec > 59){
@@ -153,15 +148,13 @@ toggle.addEventListener('click',() =>{
             }else{
             pushZero(nowMin,textMin);
             pushZero(nowSec,textSec);
-            console.log(nowMin);
-            console.log(nowSec);
             }
         },1000);
         startCnt = 1;
         }
     }else{
         //カウントダウンタイマーの仕組み
-        if(cnt == 0 || startCnt == 1){
+        if(cnt == 0 && startCnt == 1){
             cnt = 0;
             modeShow(cnt);
             oldTime = Date.now();
@@ -186,11 +179,10 @@ toggle.addEventListener('click',() =>{
             }
             },1000);
     
-        }else if(cnt == 0 || startCnt == 2){
+        }else if(cnt == 0 && startCnt == 2){
             clearInterval(countDown);
             startCnt++;
         }else{
-            console.log('jdgq');
             oldTime = Date.now();
             totalTime = remainMSec;
         //1秒ごとに現在の時間と目的の時間を計算して表示
